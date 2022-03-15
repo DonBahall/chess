@@ -1,19 +1,29 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-
-class Main {
+class Base{
 public:
+    Texture Board, Figure;
+    Base(){
 
-};
-    int main(){
-        RenderWindow window(sf::VideoMode(640, 480), "Chess game");
-        Texture Board, Figure;
         Board.loadFromFile("C:\\chess-piece\\pngwing.com.png");
         Figure.loadFromFile("C:\\chess-piece\\queen.png");
+    }
+};
+class Draw: public Base{
+public:
+    Sprite *prt= new Sprite;
+
+    Draw(){
+
+
+        RenderWindow window(sf::VideoMode(640, 480), "Chess game");
 
         Sprite spriteboard(Board);
+
+
         Sprite queen(Figure, IntRect(40, 0, 40, 40));
+        *prt = queen;
         queen.setPosition(160, 40);
         Sprite King(Figure, IntRect(0, 0, 40, 40));
         King.setPosition(200, 40);
@@ -29,10 +39,10 @@ public:
         rook.setPosition(40, 40);
         Sprite rook2(Figure, IntRect(160, 0, 40, 40));
         rook2.setPosition(320, 40);
-        Sprite pawn1(Figure, IntRect(200, 0, 40, 40));
-        pawn1.setPosition(40, 80);
-        Sprite pawn2(Figure, IntRect(200, 0, 40, 40));
-        pawn2.setPosition(80, 80);
+        //  Sprite pawn1(Figure, IntRect(200, 0, 40, 40));
+        //  pawn1.setPosition(40, 80);
+        //  Sprite pawn2(Figure, IntRect(200, 0, 40, 40));
+        // pawn2.setPosition(80, 80);
         Sprite pawn3(Figure, IntRect(200, 0, 40, 40));
         pawn3.setPosition(120, 80);
         Sprite pawn4(Figure, IntRect(200, 0, 40, 40));
@@ -96,8 +106,6 @@ public:
             window.draw(bishop2);
             window.draw(rook);
             window.draw(rook2);
-            window.draw(pawn1);
-            window.draw(pawn2);
             window.draw(pawn3);
             window.draw(pawn4);
             window.draw(pawn5);
@@ -122,15 +130,43 @@ public:
             window.draw(Bpawn8);
             window.display();
         }
-     //
-//
 
     }
 
 
-class Pawn: public Main{
-      //  Main pAwn1=pawn1;
+
 };
-int pawn(){
+
+class Pawn: public Base {
+public:
+
+    Pawn(int x, int y) {
+        Sprite pawn1(Base::Figure, IntRect(200, 0, 40, 40));
+        pawn1.setPosition(x, y);
+        RenderWindow window(VideoMode(640, 480), "Chess game");
+        while (window.isOpen()) {
+            Event event;
+
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+
+            }
+            window.clear(Color::Green);
+            Pawn pawn1(40, 80);
+
+            // window.draw(pawn1);
+            window.display();
+
+            // Pawn pawn2{80, 80};
+
+        }
+    }
+};
+
+int main() {
+    Draw gr{};
+    //  RenderWindow window(VideoMode(640, 480), "Chess game");
 
 }
+
