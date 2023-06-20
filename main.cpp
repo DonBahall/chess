@@ -1,172 +1,104 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
-using namespace sf;
-class Base{
-public:
-    Texture Board, Figure;
-    Base(){
+#include <fstream>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+    struct STUDENT {
+        string last_name;
+        string num;
+        int mass[5];
+    };
+STUDENT people[100];
 
-        Board.loadFromFile("C:\\chess-piece\\pngwing.com.png");
-        Figure.loadFromFile("C:\\chess-piece\\queen.png");
-    }
-};
-class Draw: public Base{
-public:
-    Sprite *prt= new Sprite;
+int find_name(int i){
 
-    Draw(){
+    string b ;
+    cin>>b;
+    string z;
+    for (int index = 0; index < i; ++index) {
 
+        z=people[index].last_name;
 
-        RenderWindow window(sf::VideoMode(640, 480), "Chess game");
-
-        Sprite spriteboard(Board);
-
-
-        Sprite queen(Figure, IntRect(40, 0, 40, 40));
-        *prt = queen;
-        queen.setPosition(160, 40);
-        Sprite King(Figure, IntRect(0, 0, 40, 40));
-        King.setPosition(200, 40);
-        Sprite knight(Figure, IntRect(120, 0, 40, 40));
-        knight.setPosition(80, 40);
-        Sprite knight2(Figure, IntRect(120, 0, 40, 40));
-        knight2.setPosition(280, 40);
-        Sprite bishop(Figure, IntRect(80, 0, 40, 40));
-        bishop.setPosition(120, 40);
-        Sprite bishop2(Figure, IntRect(80, 0, 40, 40));
-        bishop2.setPosition(240, 40);
-        Sprite rook(Figure, IntRect(160, 0, 40, 40));
-        rook.setPosition(40, 40);
-        Sprite rook2(Figure, IntRect(160, 0, 40, 40));
-        rook2.setPosition(320, 40);
-        //  Sprite pawn1(Figure, IntRect(200, 0, 40, 40));
-        //  pawn1.setPosition(40, 80);
-        //  Sprite pawn2(Figure, IntRect(200, 0, 40, 40));
-        // pawn2.setPosition(80, 80);
-        Sprite pawn3(Figure, IntRect(200, 0, 40, 40));
-        pawn3.setPosition(120, 80);
-        Sprite pawn4(Figure, IntRect(200, 0, 40, 40));
-        pawn4.setPosition(160, 80);
-        Sprite pawn5(Figure, IntRect(200, 0, 40, 40));
-        pawn5.setPosition(200, 80);
-        Sprite pawn6(Figure, IntRect(200, 0, 40, 40));
-        pawn6.setPosition(240, 80);
-        Sprite pawn7(Figure, IntRect(200, 0, 40, 40));
-        pawn7.setPosition(280, 80);
-        Sprite pawn8(Figure, IntRect(200, 0, 40, 40));
-        pawn8.setPosition(320, 80);
-        Sprite BQueen(Figure, IntRect(40, 40, 40, 40));
-        BQueen.setPosition(160, 320);
-        Sprite BKing(Figure, IntRect(0, 40, 40, 40));
-        BKing.setPosition(200, 320);
-        Sprite Bknight(Figure, IntRect(120, 40, 40, 40));
-        Bknight.setPosition(80, 320);
-        Sprite Bknight2(Figure, IntRect(120, 40, 40, 40));
-        Bknight2.setPosition(280, 320);
-        Sprite Bbishop(Figure, IntRect(80, 40, 40, 40));
-        Bbishop.setPosition(120, 320);
-        Sprite Bbishop2(Figure, IntRect(80, 40, 40, 40));
-        Bbishop2.setPosition(240, 320);
-        Sprite Brook(Figure, IntRect(160, 40, 40, 40));
-        Brook.setPosition(40, 320);
-        Sprite Brook2(Figure, IntRect(160, 40, 40, 40));
-        Brook2.setPosition(320, 320);
-        Sprite Bpawn1(Figure, IntRect(200, 40, 40, 40));
-        Bpawn1.setPosition(40, 280);
-        Sprite Bpawn2(Figure, IntRect(200, 40, 40, 40));
-        Bpawn2.setPosition(80, 280);
-        Sprite Bpawn3(Figure, IntRect(200, 40, 40, 40));
-        Bpawn3.setPosition(120, 280);
-        Sprite Bpawn4(Figure, IntRect(200, 40, 40, 40));
-        Bpawn4.setPosition(160, 280);
-        Sprite Bpawn5(Figure, IntRect(200, 40, 40, 40));
-        Bpawn5.setPosition(200, 280);
-        Sprite Bpawn6(Figure, IntRect(200, 40, 40, 40));
-        Bpawn6.setPosition(240, 280);
-        Sprite Bpawn7(Figure, IntRect(200, 40, 40, 40));
-        Bpawn7.setPosition(280, 280);
-        Sprite Bpawn8(Figure, IntRect(200, 40, 40, 40));
-        Bpawn8.setPosition(320, 280);
-
-        while (window.isOpen()) {
-            Event event;
-
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
-                    window.close();
-
+            if(z.find(b,0)==0) {
+                cout << people[index].last_name << endl;
             }
-            window.clear(Color::Green);
-            window.draw(spriteboard);
-            window.draw(queen);
-            window.draw(King);
-            window.draw(knight);
-            window.draw(knight2);
-            window.draw(bishop);
-            window.draw(bishop2);
-            window.draw(rook);
-            window.draw(rook2);
-            window.draw(pawn3);
-            window.draw(pawn4);
-            window.draw(pawn5);
-            window.draw(pawn6);
-            window.draw(pawn7);
-            window.draw(pawn8);
-            window.draw(BQueen);
-            window.draw(BKing);
-            window.draw(Bknight);
-            window.draw(Bknight2);
-            window.draw(Bbishop);
-            window.draw(Bbishop2);
-            window.draw(Brook);
-            window.draw(Brook2);
-            window.draw(Bpawn1);
-            window.draw(Bpawn2);
-            window.draw(Bpawn3);
-            window.draw(Bpawn4);
-            window.draw(Bpawn5);
-            window.draw(Bpawn6);
-            window.draw(Bpawn7);
-            window.draw(Bpawn8);
-            window.display();
-        }
 
     }
-
-
-
-};
-
-class Pawn: public Base {
-public:
-
-    Pawn(int x, int y) {
-        Sprite pawn1(Base::Figure, IntRect(200, 0, 40, 40));
-        pawn1.setPosition(x, y);
-        RenderWindow window(VideoMode(640, 480), "Chess game");
-        while (window.isOpen()) {
-            Event event;
-
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
-                    window.close();
-
-            }
-            window.clear(Color::Green);
-            Pawn pawn1(40, 80);
-
-            // window.draw(pawn1);
-            window.display();
-
-            // Pawn pawn2{80, 80};
-
-        }
-    }
-};
-
-int main() {
-    Draw gr{};
-    //  RenderWindow window(VideoMode(640, 480), "Chess game");
-
 }
+    int main() {
+
+    const char *SEPARATORS = "!?.,;/*-+\n\t ";
+
+        char S[100];
+        char *ptr;       //Указатель
+
+        string line;
+        ifstream fin("D:\\Students_info\\Students.txt"); // открыли файл для чтения
+        int i = 0;
+        if (fin.is_open()) {
+            while (getline(fin, line)) {
+                int k = 0;
+
+                strcpy(S, line.c_str());
+
+                ptr = strtok(S, SEPARATORS);
+                while (ptr != nullptr) {
+                    if (k == 0) {
+
+                        people[i].last_name = ptr;
+
+                    } else if (k == 1) {
+                        people[i].num = ptr;
+                    } else {
+                        people[i].mass[k - 2] = atoi(ptr) ;
+                    }
+                    ptr = strtok(nullptr, " ");
+                    k++;
+                }
+                i++;
+            }
+        }
+        for (int startIndex = 0; startIndex < i; ++startIndex) {
+            int smallestIndex = startIndex;
+            for (int currentIndex = startIndex + 1; currentIndex < i; ++currentIndex) {
+                if (people[currentIndex].num < people[smallestIndex].num)
+                    smallestIndex = currentIndex;
+            }
+            swap(people[startIndex], people[smallestIndex]);
+        }
+
+        cout<<"============================="<<endl;
+
+        for (int index = 0; index < i; ++index) {
+            cout << people[index].last_name << " " << people[index].num << " ";
+            for (int d = 0; d < 5; d++) {
+                cout << people[index].mass[d];
+            }
+            cout << endl;
+        }
+        cout<<"============================="<<endl;
+
+        int exist = 0;
+        for (int index = 0; index < i; ++index) {
+            float sum = 0;
+
+            for(int d=0;d<5;d++){
+              sum = sum + people[index].mass[d];
+            }
+
+            float srznach = sum/5;
+
+            if(srznach>4.0){
+                cout<<people[index].last_name<<" "<<people[index].num<<" "<<endl;
+                exist = 1;
+            }
+            fin.close(); // закрываем файl
+        }
+        if (exist == 0) {
+            cout<<"STUDENT NOT FOUND"<<endl;
+        }
+        cout<<"============================="<<endl;
+        find_name(i);
+    }
+
 
